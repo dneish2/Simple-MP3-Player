@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title></title>
+    <meta name="viewport"
+      content="width=device-width, initial-sacle=1, maximum-scale=1">
+      <link rel= "StyleSheet" href="styles.css">
+      <link rel= "StyleSheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body>
+
+<header>
+  <img src="https://www.iab.com/wp-content/uploads/2015/11/iab-digital-audio-committee-does-dallas-4-987x305.png" alt="">
+</header>
+
+<section id="track-list">
+  <div class="track">
+    <h2>Little Idea</h2>
+    <button onclick= "playASong('#song1')" >
+      <i class= "fa fa-play"></i>
+    </button>
+  </div>
+  <div class="track">
+    <h2>Energy</h2>
+    <button onclick= "playASong('#song2')" >
+      <i class= "fa fa-play"></i>
+    </button>
+  </div>
+  <div class="track">
+    <h2>Ukulele</h2>
+    <button onclick= "playASong('#song3')" >
+      <i class= "fa fa-play"></i>
+    </button>
+  </div>
+  <div class="track">
+    <h2>Summer</h2>
+    <button onclick= "playASong('#song4')" >
+      <i class= "fa fa-play"></i>
+    </button>
+  </div>
+</section>
+
+<section id="controls">
+  <button onclick="back()">  <i class= "fa fa-backward"></i>
+  </button>
+  <button id="main-button" onclick="playASong(defaultOrLastSong)">
+  <i class= "fa fa-play"></i></button>
+  <button onclick="next()">
+    <i class= "fa fa-forward"></i></button>
+</section>
+
+<audio id="song1" src="bensound-littleidea.mp3"></audio>
+<audio id="song2" src="bensound-energy.mp3"></audio>
+<audio id="song3" src="bensound-ukulele.mp3"></audio>
+<audio id="song4" src="bensound-summer.mp3"></audio>
+
+<script>
+  var songs = [
+    {id: 'song1', pic: 'https://www.bensound.com/bensound-img/littleidea.jpg'},
+    {id: 'song2', pic: 'http://www.iea.org/media/news/2017/171106Digitalization.jpg'},
+    {id: 'song3', pic: 'https://coolhandukes.shop/ukeshop/wp-content/uploads/2018/02/KTM_S00_02.jpg'},
+    {id: 'song4', pic: 'http://www.travelblat.com/wp-content/uploads/2014/07/summer-vacation.jpg'},
+  ];
+
+  var defaultOrLastSong = '#song1';
+
+  function playASong(songId) {
+    // TODO pause all other songs
+    // find the audio ag
+    var audioTag = document.querySelector(songId);
+    var mainButton = document.querySelector('#main-button');
+    var icon = document.querySelector('#main-button i');
+
+    if (audioTag.paused) {
+      defaultOrLastSong = songId;
+    // TODO pause all other songs
+    songs.forEach(song => {
+      document.querySelector('#' + song.id).pause();
+    });
+    // Click the play button
+    audioTag.play();
+    mainButton.className = 'pause';
+    icon.className = 'fa fa-pause';
+    // switch the image
+    var img = songs.find(song => songId.match(song.id)).pic;
+    var imgTag = document.querySelector('header img');
+    imgTag.src = img;
+  } else {
+    audioTag.pause();
+    mainButton.className = '';
+    icon.className = 'fa fa-play';
+  }
+}
+
+  function next() {
+    // get the current song number
+    // the [5] grabs a specific char from a string
+    var currentSongNumber = parseInt(defaultOrLastSong[5]);
+    // add one to it
+    var nextNumber = currentSongNumber +1;
+    // if its 5, make it 1
+    if (nextNumber ==5) {
+      nextNumber =1;
+    }
+    // if music is playing, play the next song
+    var audioTag = document.querySelector(defaultOrLastSong);
+    if(audioTag.paused == false) {
+      playASong('#song' + nextNumber);
+    } else {
+      // else, run playASong twice on the next song
+        //NOTE: this is a hack, play x2 == paused
+        playASong('#song' + nextNumber);
+        playASong('#song' + nextNumber);
+    }
+  }
+
+
+  function back() {  // get the current song number
+    // the [5] grabs a specific char from a string
+    var currentSongNumber = parseInt(defaultOrLastSong[5]);
+    // add one to it
+    var nextNumber = currentSongNumber - 1;
+    // if its 5, make it 1
+    if (nextNumber ==0) {
+      nextnumber =4;
+    }
+    // if music is playing, play the next song
+    var audioTag = document.querySelector(defaultOrLastSong);
+    if(audioTag.paused == false) {
+      playASong('#song' + nextNumber);
+    } else {
+      // else, run playASong twice on the next song
+        //NOTE: this is a hack, play x2 == paused
+        playASong('#song' + nextNumber);
+        playASong('#song' + nextNumber);
+    }
+  }
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

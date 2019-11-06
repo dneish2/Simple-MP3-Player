@@ -1,0 +1,93 @@
+/* styles.css */
+html, body{
+
+position: absolute;
+height: 100%;
+width: 100%;
+
+background: #304352; /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #304352, #d7d2cc); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #304352, #d7d2cc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+  width: 95%;
+  height: 200px;
+  background-color: white;
+  margin: auto;
+  margin: top: 8px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  box-shadow: black 0 0 5px;
+  overflow: hidden;
+}
+
+ header img {
+   width: 100%;
+   height: 200px;
+ }
+
+#track-list {
+  width: 95%;
+  background-color: white;
+  margin: auto;
+  box-shadow: grey 0 10px 5px;
+}
+
+h2 {
+  margin: 0;
+}
+
+#controls {
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  bottom: 0;
+
+  background-color: rgba(0,0,0, 0.1);
+  line-height: 110px;
+  text-align: center;
+}
+
+#controls button {
+  font-size: 30px;
+}
+
+.fa-pause {
+  color: white;
+}
+
+#main-button {
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+
+  background: #8e9eab;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#main-button.pause {
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.track {
+  height: 75px;
+  outline: solid 1px black;
+  box-sizing: border-box;
+  padding: 0 8px;
+}
+
+.track button {
+  float: right;
+  height: 40px;
+  transform: translateY(-58px);
+}
+
+.track h2 {
+  line-height: 75px;
+}
